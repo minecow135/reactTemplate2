@@ -1,5 +1,8 @@
 import "~/styles/globals.css";
 
+import Topnav from "./_components/topnav";
+import Footer from "./_components/footer";
+
 import { GeistSans } from "geist/font/sans";
 
 import { TRPCReactProvider } from "~/trpc/react";
@@ -17,9 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
+      <body className="flex min-h-screen flex-col bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+        <Topnav />
         <TRPCReactProvider>{children}</TRPCReactProvider>
+        <Footer />
       </body>
     </html>
   );
-}
+};
