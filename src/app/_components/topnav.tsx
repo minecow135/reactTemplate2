@@ -82,9 +82,9 @@ async function Profile() {
                 <MenuItem>
                   <a
                     className="block p-1 rounded-lg data-[focus]:bg-slate-800"
-                    href="/settings"
+                    href="/user"
                   >
-                    Settings
+                    Profile
                   </a>
                 </MenuItem>
                 <MenuSeparator className="my-1 h-px bg-slate-600" />
