@@ -1,5 +1,7 @@
 import "~/styles/globals.css";
 
+import { ThemeProvider } from "~/components/theme-provider"
+
 import Topnav from "./_components/topnav";
 import Footer from "./_components/footer";
 
@@ -20,10 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body className="flex min-h-screen min-w-80 flex-col text-foreground dark">
-        <Topnav />
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-        <Footer />
+      <body className="flex min-h-screen min-w-80 flex-col text-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+        >
+          <Topnav />
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

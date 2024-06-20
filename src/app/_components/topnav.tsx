@@ -4,6 +4,8 @@ import Link from "next/link";
 import { getServerAuthSession } from "~/server/auth";
 import * as fa from 'react-icons/fa';
 
+import { ModeToggleButton, } from "./theme";
+
 async function Nav() {
   const session = await getServerAuthSession();
 
@@ -66,6 +68,9 @@ async function Profile() {
                   <User className="mr-2 h-4 w-4" />
                   Profile
                 </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem key={"theme"}>
+                <ModeToggleButton />
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem key={"logout"}>
