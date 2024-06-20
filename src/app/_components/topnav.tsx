@@ -16,7 +16,7 @@ async function Nav() {
   ]
 
   return (
-    <div className="ml-4">
+    <div className="flex ml-4">
       <DropdownMenu>
         <DropdownMenuTrigger><fa.FaBars /></DropdownMenuTrigger>
         <DropdownMenuContent className="rounded-lg p-1 min-w-32">
@@ -44,7 +44,7 @@ async function Profile() {
       {
         session ?
           <DropdownMenu>
-            <DropdownMenuTrigger><img className="rounded-full w-10 border" src={(session.user?.image as string)} alt="profile picture" /></DropdownMenuTrigger>
+            <DropdownMenuTrigger className="flex"><img className="rounded-full h-12 border" src={(session.user?.image as string)} alt="profile picture" /></DropdownMenuTrigger>
             <DropdownMenuContent className="rounded-lg p-1 min-w-32">
               <DropdownMenuLabel key={"userinfo"}>
                 <div className="flex flex-col">
@@ -100,8 +100,7 @@ export default async function Topnav() {
 
   return (
     <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold bg-muted">
-      <Link href="/"><h1 className="h-full">React Template 2</h1></Link>
-
+      <Link href="/"><h1>React Template 2</h1></Link>
       <div className="flex items-center">
         <Nav />
         <Profile />
