@@ -5,10 +5,9 @@ import { getServerAuthSession } from "~/server/auth";
 import * as fa from 'react-icons/fa';
 
 import { ModeToggleButton, } from "./theme";
+import { LoginButton, LogoutButton } from "./login";
 
 async function Nav() {
-  const session = await getServerAuthSession();
-
   const links = [
     { href: '/settings', label: 'Settings' },
     { href: '/support', label: 'Support' },
@@ -62,35 +61,24 @@ async function Profile() {
               <DropdownMenuSeparator />
               <DropdownMenuItem key={"profile"}>
                 <Link
-                  className="flex items-center p-1 rounded-lg"
+                  className="flex items-center p-1 rounded-lg w-full h-full"
                   href="/user"
                 >
                   <User className="mr-2 h-4 w-4" />
-                  Profile
+                  <span>Profile</span>
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem key={"theme"}>
+              <DropdownMenuItem key={"theme"} className="focus:bg-transparent">
                 <ModeToggleButton />
               </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem key={"logout"}>
-                <Link
-                  className="flex items-center p-1 rounded-lg"
-                  href="/api/auth/signout"
-                >
-                  <LogOut className="mr-2 h-4 w-4" />
-                  Sign out
-                </Link>
+                <LogoutButton />
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           :
-          <Link
-            href="/api/auth/signin"
-            className="rounded-full bg-primary text-primary-foreground px-10 py-3 font-semibold no-underline transition hover:bg-secondary"
-          >
-            Sign in
-          </Link>
+          <LoginButton />
       }
     </div>
   );
