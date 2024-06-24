@@ -38,6 +38,7 @@ export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
 }));
 
+// account
 export const accounts = createTable(
   "account",
   {
@@ -100,3 +101,35 @@ export const verificationTokens = createTable(
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
   })
 );
+
+// Navigation
+export const menuPlacements = createTable(
+  "menuPlacements",
+  {
+    id: int("id")
+      .notNull()
+      .primaryKey()
+      .autoincrement(),
+    name: varchar("name", { length: 20 }).notNull(),
+  }
+);
+
+export const menu = createTable(
+  "menu",
+  {
+    id: int("id")
+      .notNull()
+      .primaryKey()
+      .autoincrement(),
+    parent_id: int("parent_id"),
+    menu: int("menu").notNull()
+      .references(() => menuPlacements.id),
+    label: varchar("label", { length: 20 }).notNull(),
+    href: varchar("href", { length: 40 }).notNull(),
+  }
+);
+
+export const menuRelations = relations(menu, ({ one }) => ({
+  menu: one(menu, { fields: [menu.parent_id], references: [menu.id] }),
+  menuPlacements: one(menuPlacements, { fields: [menu.menu], references: [menuPlacements.id] }),
+}));

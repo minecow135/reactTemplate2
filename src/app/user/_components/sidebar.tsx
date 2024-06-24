@@ -1,40 +1,54 @@
 import Link from "next/link";
-import { getServerAuthSession } from "~/server/auth";
+import { settingsSideBar } from "~/server/queries";
 
-async function Nav() {
-  const session = await getServerAuthSession();
+interface TieredItem {
+  id: number;
+  label: string;
+  href: string;
+  children?: TieredItem[]; // array of children
+};
 
-  const links = [
-    { href: '/user', label: 'Profile', active: true},
-    { href: '/user/settings', label: 'Settings' },
-  ]
+async function getData() {
+  let data = await settingsSideBar(2);
+  let list = data[0];
+  for (const item of list) {
+    if (item.children) {
+      item.children = JSON.parse(item.children).children;
+    };
+  };
+  return list;
+};
+
+// ListItem component
+const ListItem: React.FC<{ item: TieredItem }> = ({ item }) => {
   return (
-    <div className="flex flex-col align-top justify-between h-full w-full">
-      <div>
-      {links.map((link) => (
-        link.active ?
-          <div key={link.label}>
-            <Link
-              href={link.href}
-              className="block p-1 w-full"
-            >
-            <p className="border-b border-foreground truncate font-extrabold">{link.label}</p>
-            </Link>
-          </div>
-        :
-          <div key={link.label}>
-            <Link
-              href={link.href}
-              className="block p-1 w-full"
-            >
-              <p className="border-b border-foreground truncate">{link.label}</p>
-            </Link>
-          </div>
+    <li>
+      
+      <Link href={item.href}>{item.label}</Link>
+      {/* Recursively render children if they exist */}
+      {item.children && item.children?.length >= 1 && (
+        <ul className = " ml-5">
+          {item.children.map((child: any) => (
+            <ListItem key={child.id} item={child} />
+          ))}
+        </ul>
+      )}
+    </li>
+  );
+};
+
+// Nav component
+const Nav: React.FC = async () => {
+  const data = await getData()
+
+  return (
+    <ul>
+      {data.map((item) => (
+        <ListItem key={item.id} item={item} />
       ))}
-      </div>
-    </div>
-  )
-}
+    </ul>
+  );
+};
 
 export default async function Sidebar() {
 
