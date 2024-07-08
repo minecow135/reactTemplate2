@@ -8,7 +8,6 @@ export default async function send() {
       "reply@example.com"
     ],
     to: ["to@example.com"],
-    cc: [],
     bcc: [
       "bcc1@example.com",
       "bcc2@example.com",
