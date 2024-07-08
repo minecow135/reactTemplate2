@@ -4,9 +4,7 @@ import newUser from "../templates/newUser";
 
 export default async function send() {
   await sendEmail({
-    replyTo: [
-      "reply@example.com"
-    ],
+    replyTo: "reply@example.com",
     to: ["to@example.com"],
     bcc: [
       "bcc1@example.com",

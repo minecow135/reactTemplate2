@@ -2,10 +2,10 @@ import { env } from "~/env";
 import nodemailer from "nodemailer"
 
 type EmailPayload = {
-  replyTo?: string[]
-  to?: string[]
-  cc?: string[]
-  bcc?: string[]
+  replyTo?: string | string[]
+  to?: string | string[]
+  cc?: string | string[]
+  bcc?: string | string[]
   subject: string
   html: string
 }
