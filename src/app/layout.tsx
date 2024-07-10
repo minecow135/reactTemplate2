@@ -12,8 +12,6 @@ import Footer from "./_components/footer";
 
 import { GeistSans } from "geist/font/sans";
 
-import { TRPCReactProvider } from "~/trpc/react";
-
 
 export const metadata = {
   title: "react Template 2",
@@ -38,7 +36,7 @@ export default async function RootLayout({
             enableSystem
           >
             <Topnav />
-            <TRPCReactProvider>{children}</TRPCReactProvider>
+            {children}
             <Footer />
           </ThemeProvider>
         </SessionProviderWrapper>

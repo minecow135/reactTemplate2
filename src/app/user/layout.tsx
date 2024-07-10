@@ -1,7 +1,5 @@
 import Sidebar from "./_components/sidebar";
 
-import { TRPCReactProvider } from "~/trpc/react";
-
 export default function RootLayout({
   children,
 }: {
@@ -10,7 +8,7 @@ export default function RootLayout({
   return (
     <div className="flex w-full h-full flex-grow">
       <Sidebar />
-      <TRPCReactProvider>{children}</TRPCReactProvider>
+      {children}
     </div>
   );
 };
