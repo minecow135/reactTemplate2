@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { settingsSideBar } from "~/server/queries";
+import { settingsSideBar } from "~/server/db/core/queries/nav";
 
 interface TieredItem {
   id: number;
@@ -23,7 +23,7 @@ async function getData() {
 const ListItem: React.FC<{ item: TieredItem }> = ({ item }) => {
   return (
     <li>
-      
+
       <Link href={item.href}>{item.label}</Link>
       {/* Recursively render children if they exist */}
       {item.children && item.children?.length >= 1 && (
@@ -55,7 +55,7 @@ export default async function Sidebar() {
   return (
     <nav className="items-center justify-between border-b p-2 m-5 text-xl font-semibold bg-muted/40 rounded-lg w-60">
       <div>
-        
+
       </div>
       <Nav />
     </nav>

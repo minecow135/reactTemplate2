@@ -1,18 +1,11 @@
 import "server-only";
-import { db } from "./db";
+import { dbnav } from "../drizzle/nav";
 import { sql } from 'drizzle-orm';
 
-export async function userInfo() {
-  const images = await db.query.users.findFirst({
-  });
-
-  return images;
-};
-
-export async function settingsSideBar(menu:number) {
+export async function settingsSideBar(menu: number) {
   const table = "react-template2_menu";
 
-  const data = await db.execute(sql`
+  const data = await dbnav.execute(sql`
     WITH RECURSIVE item_hierarchy AS (
       SELECT
         id,

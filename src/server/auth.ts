@@ -9,13 +9,13 @@ import DiscordProvider from "next-auth/providers/discord";
 import GitHubProvider from "next-auth/providers/github";
 
 import { env } from "~/env";
-import { db } from "~/server/db";
+import { dbauth } from "~/server/db/core/drizzle/auth";
 import {
   accounts,
   sessions,
   users,
   verificationTokens,
-} from "~/server/db/schema";
+} from "~/server/db/core/schema/auth";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   },
-  adapter: DrizzleAdapter(db, {
+  adapter: DrizzleAdapter(dbauth, {
     usersTable: users,
     accountsTable: accounts,
     sessionsTable: sessions,
