@@ -1,9 +1,6 @@
 import { Separator } from "~/components/ui/separator"
 
-import { userInfo } from "~/server/queries";
-
 export default async function Settings() {
-  let userData = await userInfo();
 
   return (
     <main className="flex w-full h-full flex-grow flex-col items-center mt-5">
