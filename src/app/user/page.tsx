@@ -1,10 +1,18 @@
 import { Separator } from "~/components/ui/separator"
 
-//import { userInfo } from "~/server/queries";
+import { getServerAuthSession } from "~/server/auth";
 
 export default async function Settings() {
-  //let userData = await userInfo();
+  const userDataRes = await getServerAuthSession();
+
+  if (!userDataRes) {
+    return (
+      "Not loged in"
+    );
+  }
   
+  const userData = userDataRes.user;
+
   return (
     <main className="flex w-full h-full flex-grow flex-col items-center mt-5">
       <h1 className="font-extrabold tracking-tight sm:text-[3rem]">Profile</h1>
@@ -12,14 +20,14 @@ export default async function Settings() {
 
       <div className="flex flex-col w-4/5">
         <div className="w-full">
-          <img className="rounded-full mb-10 mr-10 float-left w-1/4 border" src="" alt="profile picture" />
+          <img className="rounded-full mb-10 mr-10 float-left w-1/4 border" src={(userData?.image as string)} alt="profile picture" />
           <div>
             <span>Username: </span>
-            <span></span>
+            <span>{userData?.name}</span>
           </div>
           <div>
             <span>Email: </span>
-            <span></span>
+            <span>{userData?.email}</span>
           </div>
         </div>
       </div>
