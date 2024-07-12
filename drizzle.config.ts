@@ -11,4 +11,5 @@ export default {
     url: env.DATABASE_URL,
   },
   tablesFilter: [filter],
+  strict: true,
 } satisfies Config;
