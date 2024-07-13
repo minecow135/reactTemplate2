@@ -4,6 +4,7 @@
 
 ## gallery
 
-- /src/app/admin/img
-- /src/app/web/img
-- /src/server/db/img
+- /public/img/
+- /src/app/admin/img/
+- /src/app/web/img/
+- /src/server/db/img/
