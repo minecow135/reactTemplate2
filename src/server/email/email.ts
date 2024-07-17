@@ -15,7 +15,7 @@ type EmailPayload = {
 const smtpOptions = {
   host: env.SMTP_HOST || "smtp.mailtrap.io",
   port: parseInt(env.SMTP_PORT || "2525"),
-  secure: env.SMTP_SECURE,
+  secure: Boolean(JSON.parse(env.SMTP_SECURE)),
   auth: {
     user: env.SMTP_USER || "user",
     pass: env.SMTP_PASSWORD || "password",
