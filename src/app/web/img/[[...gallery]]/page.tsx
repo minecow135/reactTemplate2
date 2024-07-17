@@ -117,7 +117,7 @@ async function Img({ params } : { params: { gallery?: string[] } }) {
   )
 }
 
-export default async function Home({ params }: { params: { gallery: string[] } }) {  
+export default async function Gallery({ params }: { params: { gallery: string[] } }) {  
   return (
     <main className="flex w-full h-full flex-grow flex-col items-center mt-5">
       <h1 className="font-extrabold tracking-tight sm:text-[3rem]">Gallery</h1>
