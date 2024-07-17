@@ -25,9 +25,7 @@ async function Album({ params } : { params: { gallery?: string[] } }) {
     album = await getAlbum(NaN);
   }
 
-  console.log(slug ? slug[slug?.length - 1] : "")
-
-  let a = slug ? slug[slug?.length - 1] : ""
+  let urlPart = slug ? slug[slug?.length - 1] : ""
 
   return (
     <div className="flex w-full h-full flex-grow flex-col items-center">
@@ -37,7 +35,7 @@ async function Album({ params } : { params: { gallery?: string[] } }) {
             <h2 className="font-extrabold tracking-tight sm:text-[2rem]">Albums</h2>
             <div className="flex flex-1 flex-wrap justify-evenly w-full">
               {album.map((data: any) => (
-                <Link href={(a ? a : "img") + "/" + data.id} key={data.id} className="flex flex-col justify-center min-w-64 m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
+                <Link href={(urlPart ? urlPart : "img") + "/" + data.id} key={data.id} className="flex flex-col justify-center min-w-64 m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
                   {
                     data.img
                       ?
