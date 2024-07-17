@@ -3,12 +3,23 @@
 import { getImage } from "~/server/db/img/queries/img";
 import { ExitButton } from "./modal";
 
+import { headers } from 'next/headers';
+
+import ExifReader from 'exifreader';
+
 export async function FullPageImageView(props: { photoId: string }) {
+  const headersList = headers();
+  const http = headersList.get('x-forwarded-proto');
+  const hostname = headersList.get('x-forwarded-host');
+  const url = http + "://" + hostname;
 
   const idAsNumber = Number(props.photoId);
   if (Number.isNaN(idAsNumber)) throw new Error("Invalid photo id");
 
   const image = await getImage(idAsNumber);
+  const tags = await ExifReader.load(url + image.img);
+
+  console.log(tags)
 
   return (
     <div className="flex p-10 h-full w-full min-w-0 text-card-foreground">
