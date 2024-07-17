@@ -9,7 +9,12 @@ async function Album({ params } : { params: { gallery?: string[] } }) {
   let album = []
   
   if (slug) {
-    let lastSlug = slug[slug.length - 1];
+    let lastSlug : string | undefined
+    if (slug[slug.length - 2] === "img") {
+      lastSlug = slug[slug.length - 3];
+    } else {
+      lastSlug = slug[slug.length - 1];
+    }
     if (!lastSlug) {
       console.error("lastSlug is not defined");
       return (
@@ -66,8 +71,13 @@ async function Img({ params } : { params: { gallery?: string[] } }) {
 
   let img = [];
 
+  let lastSlug: string | undefined
   if (slug) {
-    let lastSlug = slug[slug.length - 1];
+    if (slug[slug.length - 2] === "img") {
+      lastSlug = slug[slug.length - 3];
+    } else {
+      lastSlug = slug[slug.length - 1];
+    }
     if (!lastSlug) {
       console.error("lastSlug is not defined");
       return (
@@ -91,7 +101,7 @@ async function Img({ params } : { params: { gallery?: string[] } }) {
             <h2 className="font-extrabold tracking-tight sm:text-[2rem]">Images</h2>
             <div className="flex flex-1 flex-wrap justify-evenly w-full">
               {img.map((data: any) => (
-                <Link href={data.img} key={data.id} className="flex flex-col align-middle m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
+                <Link href={lastSlug + "/img/" + data.id} key={data.id} className="flex flex-col align-middle m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
                   {
                     data.img
                       ?
