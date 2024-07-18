@@ -13,8 +13,8 @@ export function ExitButton() {
     <Button variant="outline" size="icon" onClick={() => router.back()}>
       <X />
     </Button>
-  )
-}
+  );
+};
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -33,7 +33,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
   return (
     <dialog
       ref={dialogRef}
-      className="absolute bg-card/90"
+      className="absolute bg-card/90 rounded-lg shadow-sm shadow-card-foreground/70"
       onClose={onDismiss}
       onClick={onDismiss}
     >
