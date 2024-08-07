@@ -19,26 +19,38 @@ export async function FullPageImageView(props: { photoId: string }) {
   const image = await getImage(idAsNumber);
   const tags = await ExifReader.load(url + image.img);
 
-  console.log(tags)
+  console.log(image)
+  console.log(tags["Image Width"])
 
   return (
-    <div className="flex p-10 h-full w-full min-w-0 text-card-foreground">
-      <div className="flex-shrink flex-grow pr-10">
-        <img src={image.img} className="object-contain" alt={image.title} />
+    <div className="p-10 min-w-0 text-card-foreground">
+      <div className="flex w-full border-b">
+        <span className="flex-1 p-2 text-xl">{image.title}</span>
+        <ExitButton />
       </div>
-      <div className="flex h-full w-56 flex-shrink-0 flex-col">
-        <div className="flex w-full border-b">
-          <div className="flex-1 p-2 text-xl">{image.title}</div>
-          <ExitButton />
+      <div className="flex flex-wrap pt-10">
+        <div className="flex-shrink flex-grow pr-10">
+          <img src={image.img} className="object-contain" alt={image.title} />
         </div>
+        <div className="flex flex-shrink-0 flex-col max-w-[50%]">
 
-        <div className="p-2">
-          <div>Uploaded By:</div>
-        </div>  
+          <div className="px-2 py-3">
+            <span>{image.description}</span>
+          </div>
 
-        <div className="p-2">
-          <div>Created On:</div>
-          <div>{image.dateCreated.toLocaleDateString()}</div>
+          <div className="px-2 py-3">
+            <span>Uploaded By:</span>
+          </div>
+
+          <div className="px-2 py-3">
+            <span>{tags["Image Width"]?.description} x {tags["Image Height"]?.description}</span>
+          </div>
+
+          <div className="FILLER grow" />
+
+          <div className="px-2 py-3">
+            <span>Created On: {image.dateCreated.toLocaleDateString()}</span>
+          </div>
         </div>
       </div>
     </div>
