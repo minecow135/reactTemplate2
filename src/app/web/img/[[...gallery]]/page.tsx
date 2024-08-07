@@ -71,7 +71,7 @@ async function Img({ params } : { params: { gallery?: string[] } }) {
 
   let img = [];
 
-  let lastSlug: string | undefined
+  let lastSlug: string | undefined;
   if (slug) {
     if (slug[slug.length - 2] === "img") {
       lastSlug = slug[slug.length - 3];
@@ -91,6 +91,7 @@ async function Img({ params } : { params: { gallery?: string[] } }) {
     img = await getImg(slugNum);
   } else {
     img = await getImg(NaN);
+    lastSlug = "img/0";
   }
 
   return (
