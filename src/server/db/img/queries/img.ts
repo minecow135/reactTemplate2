@@ -18,9 +18,9 @@ export async function getAlbum(parent: number) {
 export async function getImg(parent: number) {
   let result;
   if (!parent) {
-    result = await db.select().from(img).where(isNull(img.parent_id));
+    result = await db.select().from(img).where(isNull(img.parent_id)).leftJoin(users, eq(img.userId, users.id));
   } else {
-    result = await db.select().from(img).where(eq(img.parent_id, parent));
+    result = await db.select().from(img).where(eq(img.parent_id, parent)).leftJoin(users, eq(img.userId, users.id));
   }
 
   return result;

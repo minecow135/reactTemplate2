@@ -46,5 +46,6 @@ export const img = createTable(
     img: text("img").notNull(),
     dateCreated: timestamp("dateCreated").notNull().defaultNow(),
     lastModified: timestamp("lastModified").notNull().$onUpdate(() => (sql`CURRENT_TIMESTAMP`)),
+    userId: varchar("userId", { length: 255 }).references(() => users.id),
   }
 );

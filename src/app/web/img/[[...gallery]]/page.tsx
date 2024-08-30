@@ -102,19 +102,19 @@ async function Img({ params } : { params: { gallery?: string[] } }) {
             <h2 className="font-extrabold tracking-tight sm:text-[2rem]">Images</h2>
             <div className="flex flex-1 flex-wrap justify-evenly w-full">
               {img.map((data: any) => (
-                <Link href={lastSlug + "/img/" + data.id} key={data.id} className="flex flex-col align-middle m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
+                <Link href={lastSlug + "/img/" + data.img.id} key={data.img.id} className="flex flex-col align-middle m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
                   {
-                    data.img
+                    data.img.img
                       ?
                       <>
                         <div className="flex items-center justify-center w-72 h-72">
-                          <img className="max-h-72 max-w-72 rounded-md shadow-md shadow-background/70" src={data.img} alt={data.title} />
+                          <img className="max-h-72 max-w-72 rounded-md shadow-md shadow-background/70" src={data.img.img} alt={data.img.title} />
                         </div>
-                        <span className="bg-background mt-3 px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.title}</span>
+                        <span className="bg-background mt-3 px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.img.title}</span>
                       </>
                       :
                       <div className="flex items-center justify-center w-72 h-72">
-                        <span className="bg-background px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.title}</span>
+                        <span className="bg-background px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.img.title}</span>
                       </div>
                   }
                 </Link>
