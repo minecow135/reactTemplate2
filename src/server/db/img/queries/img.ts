@@ -1,14 +1,15 @@
 import "server-only";
 import { db } from "../drizzle/img";
 import { album, img } from "../schema/img";
+import { users } from "../../core/schema/auth";
 import { eq, isNull } from 'drizzle-orm';
 
 export async function getAlbum(parent: number) {
   let result;
   if (!parent) {
-    result = await db.select().from(album).where(isNull(album.parent_id));
+    result = await db.select().from(album).where(isNull(album.parent_id)).leftJoin(users, eq(album.userId, users.id));
   } else {
-    result = await db.select().from(album).where(eq(album.parent_id, parent));
+    result = await db.select().from(album).where(eq(album.parent_id, parent)).leftJoin(users, eq(album.userId, users.id));
   }
 
   return result;

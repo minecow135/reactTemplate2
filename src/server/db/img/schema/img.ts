@@ -9,6 +9,7 @@ import {
   timestamp,
   varchar,
 } from "drizzle-orm/mysql-core";
+import { users } from "../../core/schema/auth";
 import { env } from "~/env";
 
 const prefix = env.DATABASE_PREFIX;
@@ -28,6 +29,7 @@ export const album = createTable(
     img: text("img").notNull(),
     dateCreated: timestamp("dateCreated").notNull().defaultNow(),
     lastModified: timestamp("lastModified").notNull().$onUpdate(() => (sql`CURRENT_TIMESTAMP`)),
+    userId: varchar("userId", { length: 255 }).references(() => users.id),
   }
 );
 

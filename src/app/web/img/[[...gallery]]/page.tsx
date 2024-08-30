@@ -39,20 +39,20 @@ async function Album({ params } : { params: { gallery?: string[] } }) {
           <div className = "flex w-full h-full flex-grow flex-col items-center mt-5">
             <h2 className="font-extrabold tracking-tight sm:text-[2rem]">Albums</h2>
             <div className="flex flex-1 flex-wrap justify-evenly w-full">
-              {album.map((data: any) => (
-                <Link href={(urlPart ? urlPart : "img") + "/" + data.id} key={data.id} className="flex flex-col justify-center min-w-64 m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
+              {album.map((data: any) => ( 
+                <Link href={(urlPart ? urlPart : "img") + "/" + data.album.id} key={data.album.id} className="flex flex-col justify-center min-w-64 m-5 p-5 bg-muted rounded-lg items-center shadow-md shadow-muted/70">
                   {
-                    data.img
+                    data.album.img
                       ?
                       <>
                         <div className="flex items-center justify-center w-64 h-64">
-                          <img className="max-h-64 max-w-64 rounded-md shadow-md shadow-background/70" src={data.img} alt={data.title} />
+                          <img className="max-h-64 max-w-64 rounded-md shadow-md shadow-background/70" src={data.album.img} alt={data.album.title} />
                         </div>
-                        <span className="bg-background mt-3 px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.title}</span>
+                        <span className="bg-background mt-3 px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.album.title}</span>
                       </>
                       :
                       <div className="flex items-center justify-center w-64 h-64">
-                        <span className="bg-background px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.title}</span>
+                        <span className="bg-background px-2.5 py-0.5 rounded-xlg shadow-md shadow-background/70">{data.album.title}</span>
                       </div>
                   }
                 </Link>
