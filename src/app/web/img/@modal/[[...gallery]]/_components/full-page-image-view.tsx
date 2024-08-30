@@ -34,7 +34,7 @@ export async function FullPageImageView(props: { photoId: string }) {
         </div>
         <div className="flex flex-shrink-0 flex-col max-w-[50%]">
 
-          <div className="px-2 py-3">
+          <div className="px-2 pb-3">
             <span>{image.description}</span>
           </div>
 
@@ -48,7 +48,7 @@ export async function FullPageImageView(props: { photoId: string }) {
 
           <div className="FILLER grow" />
 
-          <div className="px-2 py-3">
+          <div className="px-2 pt-3">
             <span>Created On: {image.dateCreated.toLocaleDateString()}</span>
           </div>
         </div>
