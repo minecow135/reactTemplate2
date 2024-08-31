@@ -27,9 +27,7 @@ export async function getImg(parent: number) {
 }
 
 export async function getImage(id: number) {
-  const image = await db.query.img.findFirst({
-    where: (model, { eq }) => eq(model.id, id),
-  });
+  const image = await db.select().from(img).where(eq(img.id, id)).leftJoin(users, eq(img.userId, users.id));
   if (!image) throw new Error("Image not found");
 
   return image;
